@@ -1,8 +1,12 @@
 #!/usr/bin/env python
 
 print("Hi Mat!")
+
 cards = {
-    "hipocampus": "brain",
-    "heart": "chest", 
+    "hypocampus": "brain",
+    "heart": "chest",
 }
-print(cards)
+
+print(f"The cards dictionary: {cards}")
+print(f"The dict's keys: {cards.keys()}")
+print(f"The dict's values: {cards.values()}")
