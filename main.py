@@ -5,7 +5,7 @@ print("Hi Mat!")
 cards = {
     "hypocampus": "brain",
     "heart": "chest",
-    "eyballs": "head",
+    "eyeballs": "head",
 }
 
 print(f"The cards dictionary: {cards}")
