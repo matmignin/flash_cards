@@ -6,6 +6,7 @@ cards = {
     "hypocampus": "brain",
     "heart": "chest",
     "eyeballs": "head",
+    "feet": "legs",
 }
 
 print(f"The cards dictionary: {cards}")
