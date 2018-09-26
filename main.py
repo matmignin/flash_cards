@@ -65,3 +65,5 @@ frontal section 	a plane from side to side that seperates the body into front to
 sagittal section 	a plane from front to back that seperates the body into right and left portions
 transverse section 	a horizontal plane seperates the body into upper and lower portions
 '''
+=======
+>>>>>>> 2a0e94f7ad9d2234ccf25f57e71f131b5f23062a
