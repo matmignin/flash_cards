@@ -7,13 +7,27 @@ from click import Choice, command, option
 with open('patho study guide.txt', 'r') as f:
     qList = f.read()
     Question = (qList.split('\n\n'))
-
-print("There are",len(Question) - 1, "questions.")
+print()
+print("There are",len(Question) - 1, "questions for ", Question[0])
 x = int(input("what question would you like to see?"))
+print()
 
-print(Question[x])
+Review = []
+Know = []
+RUNNING = True
 
-
+while RUNNING:
+    print(Question[x])
+    Correct = input("correct?")
+    if "y" in Correct.lower():
+        Know.append(Question[x])
+    if "n" in Correct.lower():
+        Review.append(Question[x])
+    elif "q" in Correct.lower():
+        RUNNING = False
+    print(len(Review))
+    print()
+    x += 1
 
 
 """
