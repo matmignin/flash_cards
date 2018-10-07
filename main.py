@@ -5,14 +5,36 @@ import re
 def PrintQuestion(str):
     PostNum = "\. "
     newstr = re.sub(PostNum, " ]\n", str, 1)
-    print("[",newstr, "\n")
+    pstr = newstr.split("\n")
+    print("[",pstr[0])
+    print(pstr[1],"\n")
+    print("\t", pstr[2])
+    if len(pstr) > 3:
+        for i in range(3, len(pstr)):
+            print("\t", pstr[i])
+        
+'''
+        print("\t", pstr[3])
+    if len(pstr) == 5:
+        print("\t", pstr[3])
+        print("\t", pstr[4])
+    if len(pstr) == 6:
+        print("\t", pstr[3])
+        print("\t", pstr[4])
+        print("\t", pstr[5])
+'''
 
 with open('patho study guide.txt', 'r') as f:
     qList = f.read()
     Question = (qList.split('\n\n'))
 print()
 NumberOfQuestions = len(Question) - 1
-print("There are", NumberOfQuestions, "questions for ", Question[0])
+print("_____________________________________________________________")
+print("_____________________________________________________________")
+print("\t\t ", Question[0])
+print("\t\t\t[",NumberOfQuestions,"]")
+print("_____________________________________________________________")
+print("_____________________________________________________________")
 x = int(input("what question would you like to see? \n"))
 
 Review = []
@@ -20,8 +42,7 @@ Know = []
 RUNNING = True
 
 
-while RUNNING:
-   # print(Question[x], "\n")
+while NumberOfQuestions >= x:
     PrintQuestion(Question[x])
     Correct = input("correct?")
     if "y" in Correct.lower():
@@ -31,10 +52,7 @@ while RUNNING:
         Review.append(Question[x])
         x += 1
     elif "q" in Correct.lower():
-        RUNNING = False
-   # print("number of questions to review [", len(Review), "]")
-    if x > NumberOfQuestions:
-        RUNNING = False
+        break
     print()
     
 NumberToReview = len(Review)    
@@ -45,7 +63,8 @@ print("_____________________________________________________________")
 print("_____________________________________________________________")
 y = 0
 while NumberToReview > 0:
-    print (Review[y], "\n")
+    # print (Review[y], "\n"
+    PrintQuestion(Review[y])
     Correct = input("correct?")
     if "y" in Correct.lower():
         Review.pop(y)
