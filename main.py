@@ -12,17 +12,8 @@ def PrintQuestion(str):
     if len(pstr) > 3:
         for i in range(3, len(pstr)):
             print("\t", pstr[i])
-        
-'''
-        print("\t", pstr[3])
-    if len(pstr) == 5:
-        print("\t", pstr[3])
-        print("\t", pstr[4])
-    if len(pstr) == 6:
-        print("\t", pstr[3])
-        print("\t", pstr[4])
-        print("\t", pstr[5])
-'''
+    print() 
+
 
 with open('patho study guide.txt', 'r') as f:
     qList = f.read()
@@ -35,7 +26,7 @@ print("\t\t ", Question[0])
 print("\t\t\t[",NumberOfQuestions,"]")
 print("_____________________________________________________________")
 print("_____________________________________________________________")
-x = int(input("what question would you like to see? \n"))
+x = int(input("\n what question would you like to see? \n"))
 
 Review = []
 Know = []
@@ -57,9 +48,7 @@ while NumberOfQuestions >= x:
     
 NumberToReview = len(Review)    
 print("_____________________________________________________________")
-print("_____________________________________________________________")
 print("\n \t \t  Number of Questions to Review", NumberToReview, "\n")
-print("_____________________________________________________________")
 print("_____________________________________________________________")
 y = 0
 while NumberToReview > 0:
