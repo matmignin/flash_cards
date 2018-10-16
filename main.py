@@ -18,19 +18,19 @@ with open('patho.txt', 'r') as f:
     list_of_questions = f.read()
     question = (list_of_questions.split('\n\n'))
 
+
 def start(x):
     print()
     number_of_questions = len(question) - 1
     print("_____________________________________________________________")
     print("_____________________________________________________________")
     print("\t\t ", question[0])
-    print("\t\t\t[",number_of_questions,"]")
+    print("\t\t\t[", number_of_questions, "]")
     print("_____________________________________________________________")
     print("_____________________________________________________________")
 
     review = []
     know = []
-    RUNNING = True
 
     while number_of_questions >= x:
         PrintQuestion(question[x])
@@ -44,8 +44,7 @@ def start(x):
         elif "q" in correct.lower():
             break
         print()
-        
-    number_to_review = len(review)    
+    number_to_review = len(review)
     print("_____________________________________________________________")
     print("\n \t \t  Number of questions to review", number_to_review, "\n")
     print("_____________________________________________________________")
@@ -66,12 +65,10 @@ def start(x):
         if y > number_to_review - 1:
             y = 0
         else:
-            continue 
+            continue
 
     print("good job! \n youre done")
     return
-
-
 
 
 @command()
@@ -88,9 +85,6 @@ def cli(n):
     except KeyError:
         print("thats not a thing you can do")
 
+
 if __name__ == "__main__":
     cli()
-
-
-
-
