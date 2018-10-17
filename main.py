@@ -2,17 +2,19 @@
 from click import Choice, command, option
 import re
 
+
 def PrintQuestion(str):
     post_number = "\. "
     new_string = re.sub(post_number, " ]\n", str, 1)
     part_of_string = new_string.split("\n")
-    print("[",part_of_string[0])
-    print(part_of_string[1],"\n")
+    print("[", part_of_string[0])
+    print(part_of_string[1], "\n")
     print("\t", part_of_string[2])
     if len(part_of_string) > 3:
         for i in range(3, len(part_of_string)):
             print("\t", part_of_string[i])
-    print() 
+    print()
+
 
 with open('patho.txt', 'r') as f:
     list_of_questions = f.read()
