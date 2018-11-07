@@ -9,13 +9,14 @@ app.config['SECRET_KEY'] = 'kilgore'
 class QuizForm(FlaskForm):
     username = StringField('username')
     question = StringField('question')
+    title = main.question[0]
 
 @app.route('/quiz', methods=['GET', 'POST'])
 def quiz():
     form = QuizForm()
 
     if form.validate_on_submit():
-        return 'hi {}.<br> the Question for{} is.<br><br>{}'.format(form.username.data, form.question.data, main.question[int(form.question.data)])    
+        return 'hi {}.<br> the Question for {} is:<br><br>{}'.format(form.username.data, form.question.data, main.question[int(form.question.data)])    
     return render_template('patho.html', form=form) 
 
 

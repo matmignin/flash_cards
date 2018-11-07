@@ -1,5 +1,7 @@
 <!doctype html>
 
+<title> {{ form.title }}<br></title>
+
 <form method="POST" action="{{ url_for('quiz') }}">
 	{{ form.csrf_token }}
 	{{ form.username.label }}	
