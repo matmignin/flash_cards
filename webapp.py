@@ -19,7 +19,7 @@ def quiz():
 
     if form.validate_on_submit():
 
-        return 'hi {}.<br><br><br>{}'.format(form.username.data,  convert.question[int(form.question.data)])    
+        return 'hi {}.<br><br>Here is question {}'.format(form.username.data, convert.question[int(form.question.data)])    
     return render_template('patho.html', form=form) 
 
 
