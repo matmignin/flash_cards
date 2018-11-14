@@ -1,8 +1,11 @@
 <!doctype html>
 
-<title> {{ form.title }}<br></title>
+<title> the quiz  </title>
+<h1> {{ form.title }}</h1>
 
-<form method="POST" action="{{ url_for('quiz') }}">
+<h3> there are {{ form.total_questions }} questions</h3>
+
+<form method="POST" action="{{url_for('quiz')}}">
 	{{ form.csrf_token }}
 	{{ form.username.label }}	
 	{{ form.username }}<br>
