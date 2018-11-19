@@ -5,10 +5,14 @@
 
 <h3> there are {{ form.total_questions }} questions</h3>
 
-<form method="POST" action="{{url_for('quiz')}}">
+<form method="POST" action="{{url_for('login')}}">
 	{{ form.csrf_token }}
 	{{ form.username.label }}	
 	{{ form.username }}<br>
+    {{ form.password.label }}
+    {{ form.password }}<br>
+    {{ form.remember.label }}
+    {{ form.remember }}<br>
 	{{ form.question.label }}
 	{{ form.question }} <br>
 	<input type="submit" value="Submit">
