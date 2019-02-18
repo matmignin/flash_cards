@@ -8,7 +8,7 @@ import convert
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'kilgore'       
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/MAT/gatks/flash_cards/database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/MAT/Dropbox/gatks/flash_cards/database.db'
 db = SQLAlchemy(app)
 
 class User(db.Model):
