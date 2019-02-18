@@ -1,3 +1,6 @@
 flask
 Flask_sqlalchemy
-wtfforms
+Flask-WTF
+WTForms
+Click
+

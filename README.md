@@ -22,3 +22,9 @@ A CLI flash card utility
 4. convert to flash cards based on format of question
 5. display flashcards in order and single out the ones that were wrong
 6. review the incorrect question
+
+
+##using webapp
+ - start virtual env and `pip -r install requirements.txt`
+ - run `./webapp.py`
+ - go to [localhost:5000/login] to log in
