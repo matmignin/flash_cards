@@ -27,4 +27,5 @@ A CLI flash card utility
 ##using webapp
  - start virtual env and `pip -r install requirements.txt`
  - run `./webapp.py`
- - go to [localhost:5000/login] to log in
+ - go to [http://127.0.0.1:5000/login] to log in
+

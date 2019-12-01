@@ -9,6 +9,7 @@ import convert
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'kilgore'       
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/MAT/Dropbox/gatks/flash_cards/database.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class User(db.Model):
@@ -38,10 +39,10 @@ def login():
         user = User.query.filter_by(username=form.username.data).first()
         if user:
             if user.password == form.password.data:
-                return 'hi {}.<br><br>Here is question {}'.format(form.username.data, convert.question[int(form.question.data)])    
-        
+                return 'hi {}.<br><br>Here is question {}'.format(form.username.data, convert.question[int(form.question.data)])
+
         return '<h1>thats not a user</h1>'
-    return render_template('patho.html', form=form) 
+    return render_template('patho.html', form=form)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():

@@ -1,6 +1,0 @@
-flask
-Flask_sqlalchemy
-Flask-WTF
-WTForms
-Click
-
