@@ -4,11 +4,11 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email
 from flask_sqlalchemy import SQLAlchemy
-import convert 
+import convert
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'kilgore'       
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/MAT/Dropbox/gatks/flash_cards/database.db'
+app.config['SECRET_KEY'] = 'kilgore'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/MAT/gatks/flash_cards/database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -42,7 +42,7 @@ def login():
                 return 'hi {}.<br><br>Here is question {}'.format(form.username.data, convert.question[int(form.question.data)])
 
         return '<h1>thats not a user</h1>'
-    return render_template('patho.html', form=form)
+    return render_template('login.html', form=form)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
