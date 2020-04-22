@@ -1,10 +1,10 @@
-Flask==0.12
-Flask-Bootstrap==3.3.7.1
-Flask-HTTPAuth==3.2.2
-Flask-Login==0.4.0
+Werkzeug
+Flask
+Flask-Bootstrap
+Flask-HTTPAuth
+Flask-Login
 Flask-SQLAlchemy
 Flask-WTF
-Jinja2==2.9.5
+Jinja2
 SQLAlchemy
-WTForms==2.1
-Werkzeug==0.11.15
+WTForms
