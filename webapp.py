@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
@@ -8,7 +8,7 @@ import convert
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'kilgore'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/MAT/gatks/flash_cards/database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/mat/Projects/gatks/flash_cards/database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 

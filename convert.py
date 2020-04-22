@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import re
 
 with open('patho.txt', 'r') as f:
@@ -10,7 +10,7 @@ with open('patho.txt', 'r') as f:
     convert_to_numerical_list = re.sub('a\.', '</h2><ol type="A"><br><li>', add_linebreak)
     #convert_answers_list = re.sub(r'(?<=[a-z])\.', ')<br>&nbsp;', add_linebreak)
     convert_answers_list = re.sub('<br>[b-z]\.', '</li><li>', convert_to_numerical_list)
-    split_questions= (convert_answers_list.split('<br><br>'))
+    question= (convert_answers_list.split('<br><br>'))
         #splits the questions into a list with the coorisonding number. split_questions[0] is the title of the file
 
 
