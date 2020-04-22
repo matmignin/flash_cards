@@ -2,18 +2,24 @@
 A web based flash card game that converts a list of questions in any .txt file into individual prompts 
 
 ## Getting Started
+### install requirementet into virtual envv
  - `mkvirtualenv flash_cards`
  - `pip install -r requirements.txt`
- - `./webapp.py` will start the server
- - go to [http://127.0.0.1:5000/login] to login
- - go to [http://127.0.0.1:5000/signup] to sign up
-    
- 
 
-## Usage
- - use `./convert.py` to convert a txt file
+### start the flask server
+ - `./webapp.py`
 
  * `FLASK_APP=webapp.py flask run` to manually start flask
+
+### create a login
+ - go to [http://127.0.0.1:5000/login] to login
+ - go to [http://127.0.0.1:5000/signup] to sign up
+   
+
+
+## convert a txt file
+ - use `./convert.py` to convert a txt file
+
 
 ### CLI
 
@@ -25,4 +31,4 @@ A web based flash card game that converts a list of questions in any .txt file i
 5. display flashcards in order and single out the ones that were wrong
 6. review the incorrect question
 
-
+ 
