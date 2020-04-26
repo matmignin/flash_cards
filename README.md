@@ -13,8 +13,8 @@ A web based flash card game that converts a list of questions in any .txt file i
  * `FLASK_APP=webapp.py flask run` to manually start flask
 
 ### create a login
- - go to [http://127.0.0.1:5000/login] to login
  - go to [http://127.0.0.1:5000/signup] to sign up
+ - go to [http://127.0.0.1:5000/login] to login
 
 
 
