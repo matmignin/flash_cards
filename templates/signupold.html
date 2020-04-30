@@ -1,0 +1,15 @@
+<!doctype html>
+
+<title> sign yourself up  </title>
+<h1> SIGN UP</h1>
+
+<form method="POST" action="/signup">
+	{{ form.csrf_token }}
+	{{ form.email.label }}
+	{{ form.email }}<br>
+	{{ form.username.label }}
+	{{ form.username }}<br>
+    {{ form.password.label }}
+    {{ form.password }}<br>
+	<input type="submit" value="Submit">
+</form>

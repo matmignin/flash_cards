@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 import re
 
 with open('patho.txt', 'r') as f:

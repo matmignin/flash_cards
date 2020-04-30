@@ -7,14 +7,19 @@
 
 <form method="POST" action="{{url_for('login')}}">
 	{{ form.csrf_token }}
-	{{ form.username.label }}	
+	{{ form.username.label }}
 	{{ form.username }}<br>
     {{ form.password.label }}
     {{ form.password }}<br>
     {{ form.remember.label }}
     {{ form.remember }}<br>
 	{{ form.question.label }}
-	{{ form.question }} <br>
+	{{ form.question }}
 	<input type="submit" value="Submit">
-</form> 
-
+</form>
+<body>
+	<p>
+		<br>
+		<a href="{{ url_for('signup') }}">Sign Up</a>
+	</p>
+</body>

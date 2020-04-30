@@ -2,11 +2,15 @@
 from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
+import email_validator
 from wtforms.validators import InputRequired, Email
 from flask_sqlalchemy import SQLAlchemy
 import convert
 
-app = Flask(__name__)
+app_name = __name__
+app = Flask(app_name)
+
+
 app.config['SECRET_KEY'] = 'kilgore'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/mat/Projects/gatks/flash_cards/database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -31,6 +35,7 @@ class RegisterForm(FlaskForm):
     username = StringField('username', validators=[InputRequired()])
     password = PasswordField('password', validators=[InputRequired()])
 
+# @app.route('/index.html', methods=['GET', 'POST'])
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -44,6 +49,10 @@ def login():
         return '<h1>thats not a user</h1>'
     return render_template('login.html', form=form)
 
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    return render_template('login.html', form=form)
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = RegisterForm()
