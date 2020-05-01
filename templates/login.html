@@ -1,25 +1,108 @@
-<!doctype html>
+<!DOCTYPE html>
+<html>
 
-<title> the quiz  </title>
-<h1> {{ form.title }}</h1>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand</title>
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="static/css/main.css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
 
-<h3> there are {{ form.total_questions }} questions</h3>
 
-<form method="POST" action="{{url_for('login')}}">
-	{{ form.csrf_token }}
-	{{ form.username.label }}
-	{{ form.username }}<br>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/font-awesome.min.css') }}">
+</head>
+
+<body id="page-top">
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-secondary text-uppercase" id="mainNav-1">
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="#page-top" style="color: #ffffff;">Flashcard Quizz</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item mx-0 mx-lg-1" role="presentation"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Portfolio</a></li>
+                    <li class="nav-item mx-0 mx-lg-1" role="presentation"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a></li>
+                    <li class="nav-item mx-0 mx-lg-1" role="presentation"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section style="background-color: #18bc9c;">
+        <div class="container">
+            <h2 class="text-uppercase text-center text-secondary mb-0">Login</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <form id="contactForm" method="POST" action="/signup">
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                <p>Username</p><div>
+    {{ form.username.label }}<br>
+    {{ form.username }}
+</div>
+</div>
+                        </div>
+                        <div class="control-group"></div>
+                        <div class="control-group">
+                            <p>Password</p>
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2"><div>
     {{ form.password.label }}
     {{ form.password }}<br>
-    {{ form.remember.label }}
-    {{ form.remember }}<br>
-	{{ form.question.label }}
-	{{ form.question }}
-	<input type="submit" value="Submit">
-</form>
-<body>
-	<p>
-		<br>
-		<a href="{{ url_for('signup') }}">Sign Up</a>
-	</p>
+</div>
+
+                                <div type="submit" value="Submit"></div>
+                            </div>
+                        </div>
+                        <div class="control-group"></div>
+                        <div class="form-group"><button class="btn btn-primary btn-xl" id="submit" type="submit" value="Submit">Submit</button><a class="btn btn-secondary btn-xl" role="button" id="submit-1" href="signup.html" value="Submit">Sign Up</a></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">Made by</h4>
+                    <p>Mat Mignin</p>
+                </div>
+                <div class="col-md-4 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase">Around the Web</h4>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a class="btn btn-outline-light btn-social text-center rounded-circle" role="button" href="#"><i class="icon ion-document-text fa-fw"></i></a></li>
+                        <li class="list-inline-item"><a class="btn btn-outline-light btn-social text-center rounded-circle" role="button" href="#"><i class="icon ion-email fa-fw"></i></a></li>
+                        <li class="list-inline-item"></li>
+                        <li class="list-inline-item"><a class="btn btn-outline-light btn-social text-center rounded-circle" role="button" href="#"><i class="fa fa-github fa-fw"></i></a><a class="btn btn-outline-light btn-social text-center rounded-circle" role="button" href="#"><i class="fa fa-linkedin fa-fw"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="text-uppercase mb-4">yadayada</h4>
+                    <p class="lead mb-0"><span>This is just a project for learning</span></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-secondary text-uppercase" id="mainNav-1">
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="index.html" style="color: #ffffff;">Flash card Quiz Project</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive-1">
+                <ul class="nav navbar-nav ml-auto" style="color: rgb(255,255,255);">
+                    <li class="nav-item mx-0 mx-lg-1" role="presentation"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="login.html" style="color: rgba(255,255,255,0.5);">Login</a></li>
+                    <li class="nav-item mx-0 mx-lg-1" role="presentation"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about" style="color: rgba(255,255,255,0.5);">Quizes</a></li>
+                    <li class="nav-item mx-0 mx-lg-1" role="presentation"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact" style="color: rgba(255,255,255,0.5);">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="static/js/freelancer.js"></script>
 </body>
+
+</html>
