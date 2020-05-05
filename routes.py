@@ -20,12 +20,19 @@ class User(db.Model):
     username = db.Column(db.String(15), unique=True)
     email = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(80))
+    quizes = db.relationship('Quiz', backref='author', lazy='True')
+
+    def __repr__(self):
+        return f"User('(self.username)', '(self.email)')"
 
 class Quiz(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     quiz_name= db.Column(db.String(150), unique=False)
     subject = db.Column(db.String(100), unique=False)
-    creator= db.Column(db.String(50), unique=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __repr__(self):
+        return f"Quiz('(self.quiz_name)', '(self.subject)')"
 
 class LoginForm(FlaskForm):
     username = StringField('Enter Username', validators=[DataRequired()])
