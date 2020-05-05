@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 
 app.config['SECRET_KEY'] = 'kilgore'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/mat/Projects/gatks/flash_cards/database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -21,14 +21,21 @@ class User(db.Model):
     email = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(80))
 
+class Quiz(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    quiz_name= db.Column(db.String(150), unique=False)
+    subject = db.Column(db.String(100), unique=False)
+    creator= db.Column(db.String(50), unique=False)
+
 class LoginForm(FlaskForm):
     username = StringField('Enter Username', validators=[DataRequired()])
     password = PasswordField('Enter Password', validators=[DataRequired()])
     remember = BooleanField('remember me')
-    #question = StringField('question')
-    #title = convert.question[0]
-    # total_questions = convert.number_of_questions
     submit = SubmitField('Login')
+class QuestionForm(FlaskForm):
+    question = StringField('question')
+    title = convert.question[0]
+    total_questions = convert.number_of_questions
 
 class RegisterForm(FlaskForm):
     email = StringField('Enter Email', validators=[DataRequired(), Email(message='invalid email')])
