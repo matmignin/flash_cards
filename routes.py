@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 from flask import Flask, render_template
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField
 import email_validator
-from wtforms.validators import InputRequired, Email
+from wtforms.validators import DataRequired, Email, EqualTo, Length
 from flask_sqlalchemy import SQLAlchemy
 import convert
 
@@ -22,19 +22,21 @@ class User(db.Model):
     password = db.Column(db.String(80))
 
 class LoginForm(FlaskForm):
-    username = StringField('username', validators=[InputRequired()])
-    password = PasswordField('password', validators=[InputRequired()])
+    username = StringField('Enter Username', validators=[DataRequired()])
+    password = PasswordField('Enter Password', validators=[DataRequired()])
     remember = BooleanField('remember me')
-    question = StringField('question')
-    title = convert.question[0]
-    total_questions = convert.number_of_questions
+    #question = StringField('question')
+    #title = convert.question[0]
+    #total_questions = convert.number_of_questions
+    submit = SubmitField('Login')
 
 class RegisterForm(FlaskForm):
-    email = StringField('email', validators=[InputRequired(), Email(message='invalid email')])
-    username = StringField('username', validators=[InputRequired()])
-    password = PasswordField('password', validators=[InputRequired()])
+    email = StringField('Enter Email', validators=[DataRequired(), Email(message='invalid email')])
+    username = StringField('Enter Username', validators=[DataRequired()])
+    password = PasswordField('Enter Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Sign Up')
 
-# @app.route('/index.html', methods=['GET', 'POST'])
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -49,9 +51,11 @@ def login():
     return render_template('login.html', form=form)
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/index')
+@app.route('/')
 def index():
-    return render_template('index.html', form=form)
+    return render_template('index.html')
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = RegisterForm()
