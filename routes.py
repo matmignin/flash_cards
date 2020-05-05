@@ -27,7 +27,7 @@ class LoginForm(FlaskForm):
     remember = BooleanField('remember me')
     #question = StringField('question')
     #title = convert.question[0]
-    #total_questions = convert.number_of_questions
+    # total_questions = convert.number_of_questions
     submit = SubmitField('Login')
 
 class RegisterForm(FlaskForm):
@@ -61,11 +61,12 @@ def signup():
     form = RegisterForm()
 
     if form.validate_on_submit():
-        new_user = User(username=form.username.data, email=form.email.data, password=form.password.data)
+        new_user = User(username=form.username.data, email=form.email.data, password=form.password.data, confirm_password=form.confirm_password.data)
         db.session.add(new_user)
         db.session.commit()
 
-        return '<h1>New user created</h1>'
+        #return '<h1>New user created</h1>'
+        return redirect(url_for('login'))
     return render_template('signup.html', form=form)
 
 
