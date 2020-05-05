@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+
 from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
@@ -18,9 +19,9 @@ db = SQLAlchemy(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(15), unique=True)
-    email = db.Column(db.String(50), unique=True)
-    password = db.Column(db.String(80))
+    username = db.Column(db.String(15), unique=True, nullable=False)
+    email = db.Column(db.String(50), unique=True, nullable=False)
+    password = db.Column(db.String(80), nullable=False)
     quizes = db.relationship('Quiz', backref='author', lazy='True')
 
     def __repr__(self):
@@ -38,8 +39,10 @@ class Quiz(db.Model):
 class LoginForm(FlaskForm):
     username = StringField('Enter Username', validators=[DataRequired()])
     password = PasswordField('Enter Password', validators=[DataRequired()])
-    remember = BooleanField('remember me')
+    # remember = BooleanField('remember me')
     submit = SubmitField('Login')
+
+
 class QuestionForm(FlaskForm):
     question = StringField('question')
     title = convert.question[0]
@@ -51,6 +54,20 @@ class RegisterForm(FlaskForm):
     password = PasswordField('Enter Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
+
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    form = RegisterForm()
+
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data, password=form.password.data)
+        db.session.add(user)
+        db.session.commit()
+
+        #return '<h1>New user created</h1>'
+        return redirect(url_for('login'))
+    return render_template('signup.html', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -70,20 +87,6 @@ def login():
 @app.route('/')
 def index():
     return render_template('index.html')
-
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
-    form = RegisterForm()
-
-    if form.validate_on_submit():
-        new_user = User(username=form.username.data, email=form.email.data, password=form.password.data, confirm_password=form.confirm_password.data)
-        db.session.add(new_user)
-        db.session.commit()
-
-        #return '<h1>New user created</h1>'
-        return redirect(url_for('login'))
-    return render_template('signup.html', form=form)
-
 
 
 
