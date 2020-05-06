@@ -7,7 +7,8 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField
 import email_validator
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 from flask_sqlalchemy import SQLAlchemy
-import convert
+from flask_bcrypt import Bcrypt
+# import convert
 
 app = Flask(__name__)
 
@@ -61,7 +62,8 @@ def signup():
     form = RegisterForm()
 
     if form.validate_on_submit():
-        user = User(username=form.username.data, email=form.email.data, password=form.password.data)
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(username=form.username.data, email=form.email.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
         # flash(f'account created for {form.username.data}!', 'success')
@@ -77,7 +79,7 @@ def login():
         user = User.query.filter_by(username=form.username.data).first()
         if user:
             if user.password == form.password.data:
-                return 'hi {}.<br><br>Here is question'.format(form.username.data) 
+                return 'hi {}.<br><br>way to go on loggin in'.format(form.username.data)
             # , convert.question[int(form.question.data)])
 
         return '<h1>thats not a user</h1>'
