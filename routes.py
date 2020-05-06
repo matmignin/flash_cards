@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for, flash, redirect
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 import email_validator
@@ -22,7 +22,7 @@ class User(db.Model):
     username = db.Column(db.String(15), unique=True, nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(80), nullable=False)
-    quizes = db.relationship('Quiz', backref='author', lazy='True')
+    quizes = db.relationship('Quiz', backref='author', lazy=True)
 
     def __repr__(self):
         return f"User('(self.username)', '(self.email)')"
@@ -64,9 +64,9 @@ def signup():
         user = User(username=form.username.data, email=form.email.data, password=form.password.data)
         db.session.add(user)
         db.session.commit()
-
-        #return '<h1>New user created</h1>'
+        # flash(f'account created for {form.username.data}!', 'success')
         return redirect(url_for('login'))
+        return '<h1>New user created</h1>'
     return render_template('signup.html', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -77,7 +77,8 @@ def login():
         user = User.query.filter_by(username=form.username.data).first()
         if user:
             if user.password == form.password.data:
-                return 'hi {}.<br><br>Here is question {}'.format(form.username.data, convert.question[int(form.question.data)])
+                return 'hi {}.<br><br>Here is question'.format(form.username.data) 
+            # , convert.question[int(form.question.data)])
 
         return '<h1>thats not a user</h1>'
     return render_template('login.html', form=form)
