@@ -1,17 +1,10 @@
 #!/usr/bin/env python3
-from flask import Flask, render_template, url_for, flash, redirect
-from quiz_app import
-from quiz_app.forms import
-from quiz_app.models import
-
+from flask import render_template, url_for, flash, redirect
+from quiz_app import app, db, bcrypt
+from quiz_app.forms import RegisterForm, LoginForm, QuestionForm
+from quiz_app.models import User, Quiz
 from flask_login import login_user, current_user, logout_user, login_required
-
-
-
-# from wtforms import StringField, PasswordField, BooleanField, SubmitField
-# import email_validator
-# from wtforms.validators import DataRequired, Email, EqualTo, Length
-# from flask_bcrypt import Bcrypt
+import email_validator
 # import convert
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -19,7 +12,7 @@ def signup():
     form = RegisterForm()
 
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        hashed_password = bcrypt.generate_password_hash(form.password.data)
         user = User(username=form.username.data, email=form.email.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
@@ -34,9 +27,9 @@ def login():
 
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        if user:
-            if user.password == form.password.data:
-                return 'hi {}.<br><br>way to go on loggin in'.format(form.username.data)
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            # if user.password == form.password.data:
+            return 'hi {}.<br><br>way to go on loggin in'.format(form.username.data)
             # , convert.question[int(form.question.data)])
 
         return '<h1>thats not a user</h1>'
@@ -47,5 +40,3 @@ def login():
 @app.route('/')
 def index():
     return render_template('index.html')
-
-

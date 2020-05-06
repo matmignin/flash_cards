@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-
-
-bcrypt = Bcrypt(app)
+from quiz_app import db
+# from flask_login import UserMixin
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -21,5 +20,3 @@ class Quiz(db.Model):
 
     def __repr__(self):
         return f"Quiz('(self.quiz_name)', '(self.subject)')"
-
-

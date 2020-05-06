@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms.validators import DataRequired, Email, EqualTo, Length
+from quiz_app.models import User
 from quiz_app import db
+# import convert
 
 
 class LoginForm(FlaskForm):
@@ -19,6 +24,5 @@ class RegisterForm(FlaskForm):
 
 class QuestionForm(FlaskForm):
     question = StringField('question')
-    title = convert.question[0]
-    total_questions = convert.number_of_questions
-
+    # title = convert.question[0]
+    # total_questions = convert.number_of_questions
