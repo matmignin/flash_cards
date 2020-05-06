@@ -8,7 +8,9 @@ import email_validator
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-# import convert
+from flask_login import login_user, current_user, logout_user, login_required
+import convert
+
 
 app = Flask(__name__)
 
@@ -17,6 +19,7 @@ app.config['SECRET_KEY'] = 'kilgore'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -37,6 +40,8 @@ class Quiz(db.Model):
     def __repr__(self):
         return f"Quiz('(self.quiz_name)', '(self.subject)')"
 
+
+
 class LoginForm(FlaskForm):
     username = StringField('Enter Username', validators=[DataRequired()])
     password = PasswordField('Enter Password', validators=[DataRequired()])
@@ -44,17 +49,18 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 
-class QuestionForm(FlaskForm):
-    question = StringField('question')
-    title = convert.question[0]
-    total_questions = convert.number_of_questions
-
 class RegisterForm(FlaskForm):
     email = StringField('Enter Email', validators=[DataRequired(), Email(message='invalid email')])
     username = StringField('Enter Username', validators=[DataRequired()])
     password = PasswordField('Enter Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
+
+
+class QuestionForm(FlaskForm):
+    question = StringField('question')
+    title = convert.question[0]
+    total_questions = convert.number_of_questions
 
 
 @app.route('/signup', methods=['GET', 'POST'])
