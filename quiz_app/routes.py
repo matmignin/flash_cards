@@ -15,7 +15,7 @@ def index():
     return render_template('index.html')
 @app.route('/upload', methods=['POST'])
 def upload():
-    file = request.files():
+    file = request.files()
 
     newFile = FileContents(name=file.filename, data=file.read())
     db.session.add(newFile)
