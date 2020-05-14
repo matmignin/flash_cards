@@ -7,6 +7,11 @@ from flask_login import login_user, current_user, logout_user, login_required
 import email_validator
 # import convert
 
+@app.route('/index')
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = RegisterForm()
@@ -36,7 +41,10 @@ def login():
     return render_template('login.html', form=form)
 
 
-@app.route('/index')
-@app.route('/')
-def index():
-    return render_template('index.html')
+
+@app.route('/quizes', methods=['GET', 'POST'])
+def quizes():
+    form = QuestionForm()
+
+
+    return render_template('quizes.html', form=form)
