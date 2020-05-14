@@ -20,3 +20,9 @@ class Quiz(db.Model):
 
     def __repr__(self):
         return f"Quiz('(self.quiz_name)', '(self.subject)')"
+
+
+class fileContents(db.Model):
+    id = db.column(db.Integer, primary_key=True)
+    name = db.column(db.String(300))
+    data = db.column(db.LargeBinar)
