@@ -1,27 +1,28 @@
 #!/usr/bin/env python3
 from flask import render_template, request, url_for, flash, redirect
-from quiz_app import app, db, bcrypt
+from quiz_app import app, db, bcrypt, secure_filename
 from quiz_app.forms import RegisterForm, LoginForm, QuestionForm
-from quiz_app.models import User, Quiz
+from quiz_app.models import User, Quiz, FileContents
 from flask_login import login_user, current_user, logout_user, login_required
-from werkzeug.utils import secure_filename
 import email_validator
 # import convert
-ALLOWED_EXTENSIONS = {'txt', 'pdf'}
+# ALLOWED_EXTENSIONS = {'txt', 'pdf'}
 
 @app.route('/index')
 @app.route('/')
 def index():
     return render_template('index.html')
-@app.route('/upload', methods=['POST'])
+
+@app.route('/upload', methods=['GET', 'POST'])
 def upload():
-    file = request.files()
+    file = request.files['inputFile']
 
     newFile = FileContents(name=file.filename, data=file.read())
     db.session.add(newFile)
     db.session.commit()
 
     return 'saved ' + file.filename + ' to the database'
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
