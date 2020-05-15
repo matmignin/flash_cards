@@ -22,7 +22,8 @@ class Quiz(db.Model):
         return f"Quiz('(self.quiz_name)', '(self.subject)')"
 
 
-class fileContents(db.Model):
-    id = db.column(db.Integer, primary_key=True)
-    name = db.column(db.String(300))
-    data = db.column(db.LargeBinar)
+class FileContents(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(300))
+    question = db.Column(db.Text)
+    answer = db.Column(db.Text)
