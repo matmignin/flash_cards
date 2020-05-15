@@ -21,7 +21,8 @@ def upload():
     db.session.add(newFile)
     db.session.commit()
 
-    return 'saved ' + file.filename + ' to the database'
+    return render_template('upload.html')
+    # return 'saved ' + file.filename + ' to the database'
 
 
 @app.route('/signup', methods=['GET', 'POST'])

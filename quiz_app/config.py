@@ -1,0 +1,5 @@
+DEBUG = True
+SQLALCHEMY_DATABASE_URI = 'sqlite:///database.db'
+SECRET_KEY = 'kilgore'
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+ALLOWED_EXTENSIONS = {'txt', 'pdf'}
