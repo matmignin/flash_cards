@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.utils import secure_filename
 from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
