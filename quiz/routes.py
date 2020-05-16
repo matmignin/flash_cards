@@ -1,28 +1,24 @@
 #!/usr/bin/env python3
 from flask import render_template, request, url_for, flash, redirect
-from quiz_app import app, db, bcrypt, secure_filename
-from quiz_app.forms import RegisterForm, LoginForm, QuestionForm
-from quiz_app.models import User, Quiz, FileContents
+from quiz_app import app, db, bcrypt
+from quiz_app.forms import RegisterForm, LoginForm
+from quiz_app.models import User, FileContents
 from flask_login import login_user, current_user, logout_user, login_required
 import email_validator
+# from Flask.ext.uploads import UploadSet, configure_uploads, IMAGES
 # import convert
-# ALLOWED_EXTENSIONS = {'txt', 'pdf'}
 
 @app.route('/index')
 @app.route('/')
 def index():
-    return render_template('index.html')
+  return render_template('index.html')
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
-    file = request.files['inputFile']
-
-    newFile = FileContents(name=file.filename, data=file.read())
-    db.session.add(newFile)
-    db.session.commit()
-
-    return render_template('upload.html')
-    # return 'saved ' + file.filename + ' to the database'
+  if request.method == 'POST' and 'photo' in request.files:
+    filename = photos.save(request.files['photo'])
+    return filename
+  return render_template('upload.html')
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -57,7 +53,4 @@ def login():
 
 @app.route('/quizes', methods=['GET', 'POST'])
 def quizes():
-    form = QuestionForm()
-
-
-    return render_template('quizes.html', form=form)
+  return render_template('quizes.html')
