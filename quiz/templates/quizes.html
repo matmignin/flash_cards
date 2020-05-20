@@ -38,15 +38,25 @@
         </div>
     </nav>
     <section style="background-color: #18bc9c;">
-        <div class="container"></div>
+        <div class="container text-center d-flex flex-column justify-content-center align-items-center align-items-lg-center"><div class ="container d-flex align-items-center flex-column justify-content-center text-center">
+    <h1>UPLOAD YOUR OWN QUIZ</h1>
+    <form  class="container d-flex justify-content-center align-items-center text-center" method="POST" action="/upload" enctype="multipart/form-data">
+      <div class="form-group">
+        <input type="file" name="inputFile">
+      </div>
+    </form>
+</div>
+<button class="btn btn-outline-light justify-content-xl-center btn-l col-4 col-md-2" type="submit"><i class="fa fa-download mr-2"></i><span>Upload</span></button>
+            <div class="text-center mt-4"></div>
+        </div>
     </section>
     <div class="photo-gallery">
-        <div class="container">
+        <div class="container d-sm-flex flex-column justify-content-sm-center align-items-sm-center">
             <div class="intro">
-                <h2 class="text-center">Choose a quiz&nbsp;</h2>
+                <h2 class="text-center">Or Choose one&nbsp;</h2>
                 <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae. </p>
             </div>
-            <div class="row photos">
+            <div class="row text-center photos">
                 <div class="col-sm-6 col-md-4 col-lg-3 item"><a data-lightbox="photos" href="desk.jpg"><img class="img-fluid" src="#"></a></div>
                 <div class="col-sm-6 col-md-4 col-lg-3 item"><a data-lightbox="photos" href="building.jpg"><img class="img-fluid" src="#"></a></div>
                 <div class="col-sm-6 col-md-4 col-lg-3 item"><a data-lightbox="photos" href="loft.jpg"><img class="img-fluid" src="#"></a></div>

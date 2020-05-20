@@ -39,7 +39,17 @@
     </nav>
     <section style="background-color: #18bc9c;">
         <div class="container" style="background-color: #b7b7b7;padding-top: 15px;padding-bottom: 16px;">
-            <h2 class="text-uppercase text-center text-secondary mb-0" style="padding-bottom: 10px;">Login</h2>
+            <h2 class="text-uppercase text-center text-secondary mb-0" style="padding-bottom: 10px;"><div>
+<!-- {% with messages = get_flashed_messages() %} -->
+  {% if messages %}
+    {% for message in messages %}
+      <h3 class='text-danger text-center'>{{ message }}</h3>
+    {% endfor %}
+  {% endif %}
+<!-- {% endwith %} -->
+
+</div>
+Login</h2>
             <form method="post">{{ form.hidden_tag() }}
   <div class="form-group">
     {{ form.username.label(class="form-control-label") }}
@@ -68,7 +78,7 @@
     {% endif %}
   </div>
   <div class="form-group"><button class="btn btn-primary btn-block" id="submit" type="submit">Login</button></div>
-<a class="signup" href="signup">Dont have an account? Sign up.</a></form>
+<a class="signup" href="signup" style="color: rgb(0,0,0);">Dont have an account? Sign up.</a></form>
         </div>
     </section>
     <footer class="footer text-center">

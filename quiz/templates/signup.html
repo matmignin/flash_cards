@@ -39,22 +39,19 @@
     </nav>
     <section style="background-color: #18bc9c;">
         <div class="container" style="background-color: #b7b7b7;padding-top: 15px;padding-bottom: 15px;">
-            <h2 class="text-uppercase text-center text-secondary mb-0" style="padding-bottom: 10px;">Sign Up</h2>
+            <h2 class="text-uppercase text-center mb-0" style="padding-bottom: 10px;">Sign Up</h2><div>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <h3 class='display-4 text-danger text-center'>{{ message }}</h3>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+</div>
+
             <form method="POST" action="">{{ form.hidden_tag() }}
 <fieldset class="form-group">
-  <div class="form-group">
-    {{ form.email.label(class="form-control-label") }}
-    {% if form.email.errors %}
-      {{ form.email(class="form-control form-control-lg is-invalid") }}
-      <div class="invalid-feedback">
-        {% for error in form.email.errors %}
-          <span>{{ error }}</span>
-        {% endfor %}
-      </div>
-    {% else %}
-      {{ form.email(class="form-control form-control-lg") }}
-    {% endif %}
-  </div>
   <div class="form-group">
     {{ form.username.label(class="form-control-label") }}
     {% if form.username.errors %}
