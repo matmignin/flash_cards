@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 from flask import render_template, request, url_for, flash, redirect
+# from flask_uploads import UploadSet, configure_uploads, IMAGES
+import os
 from quiz import app, db, bcrypt
 from quiz.forms import RegisterForm, LoginForm
 from quiz.models import User, FileContents
 from flask_login import login_user, current_user, logout_user, login_required
-# from Flask.ext.uploads import UploadSet, configure_uploads, IMAGES
+# from werkzeug import secure_filename
 # import convert
+
 
 @app.route('/index')
 @app.route('/')
@@ -33,7 +36,7 @@ def login():
     form = LoginForm()
 
     # flash('Added user')
-    if form.valid ate_on_submit():
+    if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             # if user.password == form.password.data:
@@ -47,8 +50,13 @@ def login():
 
 
 @app.route('/quizes', methods=['GET', 'POST'])
-def quizes():
-  if request.method == 'POST' and 'photo' in request.files:
-    filename = photos.save(request.files['photo'])
-    return filename
+def upload():
+  # target = os.path.join(APP_ROOT, 'static/uploads/' )
+  if request.method == 'POST':
+    file = request.files['inputFile']
+    # saves the file to the path joined of the UP_LOAD folder and given filename.
+    file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
+    # flash(file.filename)
+    flash(f'uploaded {file.filename}', 'success')
+    # return 'file'
   return render_template('quizes.html')
