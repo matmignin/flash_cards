@@ -31,28 +31,34 @@
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="nav navbar-nav ml-auto" style="color: rgb(255,255,255);">
-                    <li class="nav-item mx-0 mx-lg-1" role="presentation" style="padding-right: 10px;"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="login" style="color: rgba(255,255,255,0.5);padding-left: 9px;">Login</a></li>
-                    <li class="nav-item mx-0 mx-lg-1" role="presentation"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="quizes" style="color: rgba(255,255,255,0.5);padding-left: 0px;">Quizes</a></li>
+                    <li class="nav-item mx-0 mx-lg-1" role="presentation" style="padding-right: 10px;"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="login" style="color: rgba(255,255,255,0.5);">Login</a></li>
+                    <li class="nav-item mx-0 mx-lg-1" role="presentation"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="upload" style="color: rgba(255,255,255,0.5);padding-left: 0px;">Upload</a></li>
+                    <li class="nav-item" role="presentation" style="padding-left: 10px;"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="quizes" style="color: rgba(255,255,255,0.5);padding-left: 0px;">Quizes</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <section style="background-color: #18bc9c;">
-        <div class="container-fluid d-flex d-sm-flex d-xl-flex flex-column justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-xl-center align-items-xl-center" style="padding-top: 25px;">
-            <hr class="star-light">
-        </div>
-        <div class="container text-center d-flex flex-column justify-content-center align-items-lg-center">
-            <h2 class="text-uppercase text-center text-white">Upload your own quiz</h2><div class ="container d-flex align-items-center flex-column justify-content-center text-center">
-    <h1>File Input</h1>
+        <div class="container text-center d-flex flex-column justify-content-center align-items-center align-items-lg-center"><div class ="container d-flex align-items-center flex-column justify-content-center text-center">
+    <h1>UPLOAD YOUR OWN QUIZ</h1>
     <form  class="container d-flex justify-content-center align-items-center text-center" method="POST" action="/upload" enctype="multipart/form-data">
       <div class="form-group">
-        <input type="file" name="inputFile">
+        <input type="file" name="inputFile" accept="image/*">
+        <input type=submit>
       </div>
     </form>
 </div>
-<button class="btn btn-outline-light btn-xl" type="submit"><i class="fa fa-download mr-2"></i><span>Upload</span></button>
-            <div class="text-center mt-4"></div>
-        </div>
+<div>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <h4 class='text-danger text-center'>{{ message }}</h4>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+</div>
+</div>
     </section>
     <footer class="footer text-center">
         <div class="container">

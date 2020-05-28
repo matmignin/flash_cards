@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from flask import render_template, request, url_for, flash, redirect
+from flask import render_template, request, url_for, flash, redirect, send_from_directory
 # from flask_uploads import UploadSet, configure_uploads, IMAGES
 import os
 from quiz import app, db, bcrypt
@@ -7,7 +7,6 @@ from quiz.forms import RegisterForm, LoginForm
 from quiz.models import User, FileContents
 from flask_login import login_user, current_user, logout_user, login_required
 # from werkzeug import secure_filename
-# import convert
 
 
 @app.route('/index')
@@ -49,14 +48,26 @@ def login():
 
 
 
-@app.route('/quizes', methods=['GET', 'POST'])
+@app.route('/upload', methods=['GET', 'POST'])
 def upload():
-  # target = os.path.join(APP_ROOT, 'static/uploads/' )
   if request.method == 'POST':
     file = request.files['inputFile']
-    # saves the file to the path joined of the UP_LOAD folder and given filename.
     file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
-    # flash(file.filename)
     flash(f'uploaded {file.filename}', 'success')
-    # return 'file'
-  return render_template('quizes.html')
+  return render_template('upload.html')
+
+@app.route('/upload/<filename>')
+def send_image(filename):
+	return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+@app.route('/quizes')
+def gallery():
+	files = os.listdir(app.config['UPLOAD_FOLDER'])
+	print(files)
+	# for file in request.files.getlist('file'):
+		# print(file)
+		# destination = "/".join(app.config['UPLOAD_FOLDER', filename])
+		# print(destination)
+		# file.save(destination)
+	# return send_from_directory("images", file.filename)
+	return render_template('quizes.html', files=files)
