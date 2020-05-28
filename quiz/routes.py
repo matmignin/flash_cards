@@ -32,29 +32,31 @@ def signup():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    form = LoginForm()
+  form = LoginForm()
 
-    # flash('Added user')
-    if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
-            # if user.password == form.password.data:
-            return render_template('quizes.html')
-            # return 'hi {}.<br><br>way to go on loggin in'.format(form.username.data)
-            # , convert.question[int(form.question.data)])
-        flash('not a user')
-        return
-    return render_template('login.html', form=form)
+  # flash('Added user')
+  if form.validate_on_submit():
+    user = User.query.filter_by(username=form.username.data).first()
+    if user and bcrypt.check_password_hash(user.password, form.password.data):
+      # if user.password == form.password.data:
+      return render_template('quizes.html')
+      # return 'hi {}.<br><br>way to go on loggin in'.format(form.username.data)
+      # , convert.question[int(form.question.data)])
+    flash('not a user')
+    return
+  return render_template('login.html', form=form)
 
 
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
-  if request.method == 'POST':
-    file = request.files['inputFile']
-    file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
-    flash(f'uploaded {file.filename}', 'success')
-  return render_template('upload.html')
+	if request.method == 'POST':
+# file = request.files['inputFile']
+		for upload in request.files.getlist("inputFile"):
+			# file = upload.filename
+			upload.save(os.path.join(app.config['UPLOAD_FOLDER'], upload.filename))
+# flash(f'uploaded {file.filename}', 'success')
+	return render_template('upload.html')
 
 @app.route('/upload/<filename>')
 def send_image(filename):
@@ -63,8 +65,8 @@ def send_image(filename):
 @app.route('/quizes')
 def gallery():
 	files = os.listdir(app.config['UPLOAD_FOLDER'])
-	print(files)
-	# for file in request.files.getlist('file'):
+	# print(files)
+	# for file in request.files.getlist('files'):
 		# print(file)
 		# destination = "/".join(app.config['UPLOAD_FOLDER', filename])
 		# print(destination)

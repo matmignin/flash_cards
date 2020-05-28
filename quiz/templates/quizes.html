@@ -50,11 +50,17 @@
 
 </div>
 </div>
-        <div class="container"><div>
-	{{files}}
-	{% for file in files %}
-		<img src= " {{url_for('send_image', filename=file)}} ">
-	{% endfor %}
+        <div class="container"><div class="container">
+		<div class="row">
+		{% for file in files %}
+			<div class="col-lg-3 col-md-4">
+				<div class="text-center">
+					{{file}}
+				</div>
+				<img class="img-thumbnail" src="{{url_for('send_image', filename=file)}}">
+			</div>
+		{% endfor %}
+		</div>
 </div>
 </div>
     </section>
