@@ -46,19 +46,19 @@ def login():
 
 
 
-@app.route('/upload', methods=['GET', 'POST'])
+@app.route('/quizes', methods=['GET', 'POST'])
 def upload():
 	if request.method == 'POST':
 		for upload in request.files.getlist("inputFile"):
 			upload.save(os.path.join(app.config['UPLOAD_FOLDER'], upload.filename))
 	files = os.listdir(app.config['UPLOAD_FOLDER'])
-	return render_template('upload.html', files=files)
+	return render_template('quizes.html', files=files)
 
-@app.route('/upload/<filename>')
+@app.route('/quizes/<filename>')
 def send_image(filename):
 	return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
-@app.route('/quizes')
-def gallery():
-	files = os.listdir(app.config['UPLOAD_FOLDER'])
-	return render_template('quizes.html', files=files)
+# @app.route('/quizes')
+# def gallery():
+	# files = os.listdir(app.config['UPLOAD_FOLDER'])
+	# return render_template('quizes.html', files=files)

@@ -39,48 +39,30 @@
         </div>
     </nav>
     <section style="background-color: #18bc9c;">
-        <div class="container" style="background-color: #b7b7b7;padding-top: 15px;padding-bottom: 16px;">
-            <h2 class="text-uppercase text-center text-secondary mb-0" style="padding-bottom: 10px;"><div>
-<!-- {% with messages = get_flashed_messages() %} -->
+        <div class="container text-center d-flex flex-column justify-content-center align-items-center align-items-lg-center"><div>
+{% with messages = get_flashed_messages() %}
   {% if messages %}
     {% for message in messages %}
-      <h3 class='text-danger text-center'>{{ message }}</h3>
+      <h4 class='text-danger text-center'>{{ message }}</h4>
     {% endfor %}
   {% endif %}
-<!-- {% endwith %} -->
+{% endwith %}
 
 </div>
-Login</h2>
-            <form method="post">{{ form.hidden_tag() }}
-  <div class="form-group">
-    {{ form.username.label(class="form-control-label") }}
-    {% if form.username.errors %}
-      {{ form.username(class="form-control form-control-lg is-invalid") }}
-      <div class="invalid-feedback">
-        {% for error in form.username.errors %}
-          <span>{{ error }}</span>
-        {% endfor %}
-      </div>
-    {% else %}
-      {{ form.username(class="form-control form-control-lg") }}
-    {% endif %}
-  </div>
-  <div class="form-group">
-    {{ form.password.label(class="form-control-label") }}
-    {% if form.password.errors %}
-      {{ form.password(class="form-control form-control-lg is-invalid") }}
-      <div class="invalid-feedback">
-        {% for error in form.password.errors %}
-          <span>{{ error }}</span>
-        {% endfor %}
-      </div>
-    {% else %}
-      {{ form.password(class="form-control form-control-lg") }}
-    {% endif %}
-  </div>
-  <div class="form-group"><button class="btn btn-primary btn-block" id="submit" type="submit">Login</button></div>
-<a class="signup" href="signup" style="color: rgb(0,0,0);">Dont have an account? Sign up.</a></form>
-        </div>
+</div>
+        <div class="container"><div class="container">
+		<div class="row">
+		{% for file in files %}
+			<div class="col-lg-3 col-md-4">
+				<div class="text-center">
+					{{file}}
+				</div>
+				<img class="img-thumbnail" src="{{url_for('send_image', filename=file)}}">
+			</div>
+		{% endfor %}
+		</div>
+</div>
+</div>
     </section>
     <footer class="footer text-center">
         <div class="container">

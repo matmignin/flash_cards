@@ -10,7 +10,6 @@ from flask_sqlalchemy import SQLAlchemy
 # adds static/upload path onto the current path directory so that it wont save in the root
 UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static/uploads/')
 
-# os.makedirs(UPLOAD_FOLDER)
 ALLOWED_EXTENSIONS = {'txt', 'jpg', 'jpeg','pdf'}
 app = Flask(__name__)
 
@@ -19,10 +18,7 @@ app.config['SECRET_KEY'] = 'kilgore'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['ALLOWED_EXTENSIONS'] = ALLOWED_EXTENSIONS
-# app.config.from_pyfile('config.py')
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
-# login_manager = LoginManager()
-# login_manager.init_app(app)
 from quiz import routes

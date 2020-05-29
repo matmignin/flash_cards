@@ -1,6 +1,6 @@
 # General
 
-
+*.bsdesign
 .DS_Store
 .AppleDouble
 .LSOverride
