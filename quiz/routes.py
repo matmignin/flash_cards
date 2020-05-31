@@ -54,11 +54,5 @@ def upload():
 	files = os.listdir(app.config['UPLOAD_FOLDER'])
 	return render_template('quizes.html', files=files)
 
-@app.route('/quizes/<filename>')
 def send_image(filename):
 	return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-
-# @app.route('/quizes')
-# def gallery():
-	# files = os.listdir(app.config['UPLOAD_FOLDER'])
-	# return render_template('quizes.html', files=files)
