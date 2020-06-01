@@ -58,6 +58,9 @@ def login():
         # return
     return render_template("login.html", form=form)
 
+def allowed_file(filename):
+    return '.' in filename and \
+            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route("/quizes", methods=["GET", "POST"])
 def upload():
