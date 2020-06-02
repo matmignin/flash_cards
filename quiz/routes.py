@@ -5,18 +5,17 @@ from flask import (
     url_for,
     flash,
     redirect,
+    session,
     send_from_directory,
 )
 import os
 from quiz import app, db, bcrypt
 from quiz.forms import RegisterForm, LoginForm
 from quiz.models import User
-
-# from flask_login import login_user, current_user, logout_user, login_required
+from flask_login import login_user, current_user, logout_user, login_required
 from sqlalchemy.exc import IntegrityError
 
 upload_folder = app.config["UPLOAD_FOLDER"]
-
 
 @app.route("/")
 @app.route("/index")
@@ -45,12 +44,14 @@ def signup():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('upload'))
     form = LoginForm()
-
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         hash_check = bcrypt.check_password_hash(user.password, form.password.data) 
         if user and hash_check:
+            login_user(user)
             flash("You have been loged in!", "success")
             files = os.listdir(upload_folder)
             return render_template("quizes.html", files=files)
@@ -59,6 +60,10 @@ def login():
             flash("not a user or correct password")
     return render_template("login.html", form=form)
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 
 @app.route('/quizes', methods=["GET", "POST"])
 def upload():

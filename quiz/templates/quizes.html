@@ -27,28 +27,28 @@
 
 <body id="page-top">
     <nav class="navbar navbar-light navbar-expand-md sticky-top bg-secondary text-uppercase" id="mainNav">
-        <div class="container-fluid"><a class="navbar-brand js-scroll-trigger" href="index" style="color: #ffffff;">Flsh card Quiz Project</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded"
+        <div class="container-fluid"><a class="navbar-brand js-scroll-trigger" href="index" style="color: #ffffff;">FlAsh card Quiz Project</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="nav navbar-nav ml-auto" style="color: rgb(255,255,255);">
-                    <li class="nav-item mx-0 mx-lg-1" role="presentation" style="padding-right: 10px;"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="login" style="color: rgba(255,255,255,0.5);">Login</a></li>
-                    <li class="nav-item mx-0 mx-lg-1" role="presentation"></li>
-                    <li class="nav-item" role="presentation" style="padding-left: 10px;"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="quizes" style="color: rgba(255,255,255,0.5);padding-left: 0px;">Quizes</a></li>
+                <ul class="nav navbar-nav d-xl-flex ml-auto align-items-xl-center" style="color: rgb(255,255,255);">
+                    <li class="nav-item d-xl-flex justify-content-xl-end align-items-xl-center" role="presentation" style="padding-right: 10px;padding-left: 10px;"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="quizes" style="color: rgba(255,255,255,0.5);">Quizes</a></li>
+                    <li class="nav-item mx-0 mx-lg-1" role="presentation" style="padding-left: 10px;padding-right: 10px;">{% if current_user.is_authenticated %}
+  <li class="nav-item dropdown mx-0 mx-lg-1">
+      <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{  current_user.username }} </a>
+      <div role="menu" class="dropdown-menu hide"><a role="presentation" class="dropdown-item" href="logout">Logout</a></div>
+  </li>
+{% else %}
+  <li class="nav-item mx-0 mx-lg-1" role="presentation" style="padding-right: 10px;">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="login" style="color: rgba(255,255,255,0.5);">Login</a>
+  </li>
+{% endif %}
+</li>
                 </ul>
             </div>
         </div>
     </nav>
     <section style="background-color: #18bc9c;">
-        <div class="container text-center d-flex flex-column justify-content-center align-items-center align-items-lg-center"><div class ="container d-flex align-items-center flex-column justify-content-center text-center">
-    <h1>UPLOAD YOUR OWN QUIZ</h1>
-    <form  class="container d-flex justify-content-center align-items-center text-center" method="POST" action="/quizes" enctype="multipart/form-data">
-      <div class="form-group">
-        <input type="file" name="inputFile" accept="image/*" multiple>
-        <input type=submit>
-      </div>
-    </form>
-</div>
-<div>
+        <div class="container text-center d-flex flex-column justify-content-center align-items-center align-items-lg-center"><div>
 {% with messages = get_flashed_messages() %}
   {% if messages %}
     {% for message in messages %}
@@ -57,6 +57,15 @@
   {% endif %}
 {% endwith %}
 
+</div>
+<div class ="container d-flex align-items-center flex-column justify-content-center text-center">
+    <h1>UPLOAD YOUR OWN QUIZ</h1>
+    <form  class="container d-flex justify-content-center align-items-center text-center" method="POST" action="/quizes" enctype="multipart/form-data">
+      <div class="form-group">
+        <input type="file" name="inputFile" accept="image/*" multiple>
+        <input type=submit>
+      </div>
+    </form>
 </div>
 </div>
     </section>

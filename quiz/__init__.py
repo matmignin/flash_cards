@@ -10,7 +10,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
-
+login = LoginManager(app)
+login.login_view = 'login'
 app.debug = True
 app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
