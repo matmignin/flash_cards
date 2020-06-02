@@ -16,9 +16,9 @@ def PrintQuestion(str):
     print()
 
 
-with open('patho.txt', 'r') as f:
+with open("patho.txt", "r") as f:
     list_of_questions = f.read()
-    question = (list_of_questions.split('\n\n'))
+    question = list_of_questions.split("\n\n")
 
 
 def start(x):
@@ -75,11 +75,7 @@ def start(x):
 
 @command()
 @option(
-    "--n",
-    help="The question we want to select",
-    default=1,
-    show_default=True,
-    type=int
+    "--n", help="The question we want to select", default=1, show_default=True, type=int
 )
 def cli(n):
     try:

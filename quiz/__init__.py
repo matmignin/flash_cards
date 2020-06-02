@@ -12,12 +12,14 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 app.debug = True
-app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-app.config['SECRET_KEY'] = 'kilgore'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['ALLOWED_EXTENSIONS'] = {'txt', 'jpg', 'jpeg','pdf'}
-app.config['UPLOAD_FOLDER'] = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static/uploads/')
+app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
+app.config["SECRET_KEY"] = "kilgore"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+# app.config["ALLOWED_EXTENSIONS"] = {"txt", "jpg", "jpeg", "pdf"}
+app.config["UPLOAD_FOLDER"] = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "static/uploads/"
+)
 toolbar = DebugToolbarExtension(app)
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)

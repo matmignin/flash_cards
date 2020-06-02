@@ -10,13 +10,16 @@ from flask import (
 import os
 from quiz import app, db, bcrypt
 from quiz.forms import RegisterForm, LoginForm
-from quiz.models import User, FileContents
-from flask_login import login_user, current_user, logout_user, login_required
+from quiz.models import User
+
+# from flask_login import login_user, current_user, logout_user, login_required
 from sqlalchemy.exc import IntegrityError
 
+upload_folder = app.config["UPLOAD_FOLDER"]
 
-@app.route("/index")
+
 @app.route("/")
+@app.route("/index")
 def index():
     return render_template("index.html")
 
@@ -36,7 +39,7 @@ def signup():
         except IntegrityError:
             db.session.rollback()
             flash("that username is already in use")
-            # return redirect(url_for('signup'))
+            return redirect(url_for('signup'))
     return render_template("signup.html", form=form)
 
 
@@ -44,39 +47,33 @@ def signup():
 def login():
     form = LoginForm()
 
-    # flash('Added user')
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
+        hash_check = bcrypt.check_password_hash(user.password, form.password.data) 
+        if user and hash_check:
             flash("You have been loged in!", "success")
-            files = os.listdir(app.config["UPLOAD_FOLDER"])
+            files = os.listdir(upload_folder)
             return render_template("quizes.html", files=files)
-            # return render_template('quizes.html')
         else:
             flash("not a user or correct password")
-            # , convert.question[int(form.question.data)])
-        # return
     return render_template("login.html", form=form)
 
-def allowed_file(filename):
-    return '.' in filename and \
-            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route("/quizes", methods=["GET", "POST"])
+@app.route('/quizes', methods=["GET", "POST"])
 def upload():
     if request.method == "POST":
-        input = request.files['inputFile']
-        if input.filename == '':
-            flash('no files')
-            return redirect(request.url)
-        # if input and allowed_file(file.filename): 
-        else:    
-            for upload in request.files.getlist("inputFile"):
-                upload.save(os.path.join(app.config["UPLOAD_FOLDER"], upload.filename))
-        files = os.listdir(app.config["UPLOAD_FOLDER"])
-        return render_template("quizes.html", files=files)
+        if request.files:
+            input = request.files["inputFile"]
+            if input.filename == "":
+                flash("no file selected")
+                return redirect(request.url)
+            else:
+                for upload in request.files.getlist("inputFile"):
+                    upload.save(os.path.join(upload_folder, upload.filename))
+    files = os.listdir(upload_folder)
+    return render_template("quizes.html", files=files)
 
 
 @app.route("/quizes/<filename>")
 def send_image(filename):
-    return send_from_directory(app.config["UPLOAD_FOLDER"], filename)
+    return send_from_directory(upload_folder, filename)
