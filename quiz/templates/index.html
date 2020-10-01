@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
     <link rel="stylesheet" href="static/css/main.css">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
@@ -26,15 +25,19 @@
 </head>
 
 <body id="page-top">
-    <nav class="navbar navbar-light navbar-expand-md sticky-top bg-secondary text-uppercase" id="mainNav">
-        <div class="container-fluid"><a class="navbar-brand js-scroll-trigger" href="index" style="color: #ffffff;">FlAsh card Quiz Project</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="nav navbar-nav d-xl-flex ml-auto align-items-xl-center" style="color: rgb(255,255,255);">
-                    <li class="nav-item d-xl-flex justify-content-xl-end align-items-xl-center" role="presentation" style="padding-right: 10px;padding-left: 10px;"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="quizes" style="color: rgba(255,255,255,0.5);">Quizes</a></li>
-                    <li class="nav-item mx-0 mx-lg-1" role="presentation" style="padding-left: 10px;padding-right: 10px;">{% if current_user.is_authenticated %}
+    <section style="background-color: #fed875;">
+        <nav class="navbar navbar-light navbar-expand-sm fixed-top bg-secondary text-uppercase" id="mainNav" style="padding: 10px;padding-bottom: 5px;padding-top: 5px;">
+            <div class="container-fluid">
+                <figure class="figure" style="margin-bottom: 0px;">
+                    <div class="container-fluid" style="padding-right: 0px;padding-left: 0px;"><a class="d-flex flex-row align-items-center" href="index" style="color: #e0e3d9;font-family: Montserrat, sans-serif;font-size: 11px;"><img class="d-flex justify-content-start align-items-center" width="25%" src="static/img/paper-logo.png"><strong>FLASHCARD PROJECT</strong><br><br></a></div>
+                </figure><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+                <div
+                    class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="nav navbar-nav d-xl-flex align-items-center ml-auto align-items-xl-center" style="color: rgb(255,255,255);">
+                        <li class="nav-item d-xl-flex justify-content-xl-end align-items-xl-center" role="presentation" style="padding-right: 10px;padding-left: 10px;"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="quizes" style="color: rgba(255,255,255,0.5);">Quizes</a></li>
+                        <li class="nav-item align-items-xl-center mx-0 mx-lg-1" role="presentation" style="padding-left: 10px;padding-right: 10px;">{% if current_user.is_authenticated %}
   <li class="nav-item dropdown mx-0 mx-lg-1">
-      <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{  current_user.username }} </a>
+      <a class="dropdown-toggle nav-link mx-0 mx-lg-1" data-toggle="dropdown" aria-expanded="false" href="#">{{  current_user.username }} </a>
       <div role="menu" class="dropdown-menu hide"><a role="presentation" class="dropdown-item" href="logout">Logout</a></div>
   </li>
 {% else %}
@@ -43,19 +46,16 @@
   </li>
 {% endif %}
 </li>
-                </ul>
+                    </ul>
             </div>
-        </div>
-    </nav>
-    <section style="background-color: #18bc9c;">
-        <div class="container-fluid d-flex d-sm-flex d-xl-flex flex-column justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-xl-center align-items-xl-center" style="padding-top: 25px;"><img class="img-fluid mb-5" src="static/img/Vonnegut.png" width="40%">
-            <h2 class="text-center font-weight-light mb-0">convert a text file to quizable flashcards</h2>
-        </div>
-        <div class="container">
-            <div class="text-center mt-4"></div>
-        </div>
+            </div>
+        </nav>
     </section>
-    <footer class="footer text-center">
+    <section id="mid" style="background-color: #fed875;">
+        <div class="container-fluid d-flex d-sm-flex d-xl-flex flex-column justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-xl-center align-items-xl-center" style="background-color: #fed875;">
+            <h2 class="text-center font-weight-light mb-0">Upload a text file and turn it into a quizable flash card</h2><img class="img-fluid mb-5" src="static/img/paper2-logo.png" style="padding-top: 15px;"></div>
+    </section>
+    <footer id="footer-main" class="footer text-center">
         <div class="container">
             <div class="row d-flex justify-content-center align-items-center m-auto justify-content-md-center align-items-md-center">
                 <div class="col-md-4 mb-5 mb-lg-0">
@@ -63,14 +63,15 @@
                     <p>Mat Mignin</p>
                 </div>
                 <div class="col-md-5 flex-row justify-content-center align-items-center align-content-center flex-wrap justify-content-md-center align-items-md-center mb-5 mb-lg-0">
-                    <h4 class="text-uppercase">Around the Web</h4>
                     <ul class="list-inline">
                         <li class="list-inline-item"><a class="btn btn-outline-primary btn-social text-center rounded-circle" role="button" href="https://github.com/matmignin"><i class="fa fa-github fa-fw"></i></a><a class="btn btn-outline-primary btn-social text-center rounded-circle"
-                                role="button" href="https://www.linkedin.com/in/matmignin/"><i class="fa fa-linkedin fa-fw"></i></a><a class="btn btn-outline-primary btn-social text-center rounded-circle" role="button" href="https://mat.mignin.com/"><i class="icon ion-document-text fa-fw"></i></a></li>
+                                role="button" href="https://www.linkedin.com/in/matmignin/"><i class="fa fa-linkedin fa-fw"></i></a></li>
                     </ul>
+                    <h4 class="text-uppercase">Links&nbsp;</h4>
                 </div>
             </div>
         </div>
+        <p><a href="https://mat.mignin.com/">About me</a></p>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>

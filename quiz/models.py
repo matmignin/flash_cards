@@ -2,6 +2,7 @@
 from quiz import db, login
 from flask_login import UserMixin
 
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))

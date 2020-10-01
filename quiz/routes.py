@@ -66,6 +66,7 @@ def logout():
     return redirect(url_for('index'))
 
 @app.route('/quizes', methods=["GET", "POST"])
+@login_required
 def upload():
     if request.method == "POST":
         if request.files:
